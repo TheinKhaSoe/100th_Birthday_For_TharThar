@@ -1,0 +1,1645 @@
+
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Days of Love | Our Little Prince</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        softblue: '#f0f9ff',
+                        softwhite: '#fafcff'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans Myanmar', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        @media (max-width: 767px) {
+            html {
+                scroll-padding-top: 140px;
+            }
+        }
+
+        body {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND */
+
+        .gradient-bg {
+            background: linear-gradient(
+                135deg,
+                #eff8ff,
+                #ffffff 55%,
+                #f0f9ff
+            );
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* HEADER */
+
+        .nav-link {
+            position: relative;
+            white-space: nowrap;
+            transition: color .3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: #0ea5e9;
+            transition: width .3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #0284c7;
+        }
+
+        /* HAMBURGER */
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 23px;
+            height: 19px;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background: #0369a1;
+            border-radius: 5px;
+            transition: .3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* MOBILE MENU */
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height .4s ease, opacity .3s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 350px;
+            opacity: 1;
+        }
+
+        .nav-link-mobile {
+            white-space: nowrap;
+        }
+
+        .nav-link-mobile.active {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        /* SMALL MOBILE NAV FIX */
+
+        @media (max-width: 767px) {
+
+            header > div {
+                gap: 6px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+
+            header .logo-box {
+                padding: 6px 9px;
+                min-width: 0;
+                flex-shrink: 1;
+            }
+
+            header .logo-box a {
+                white-space: nowrap;
+                font-size: 11px;
+                letter-spacing: -0.3px;
+                gap: 5px;
+            }
+
+            #hamburgerBtn {
+                flex-shrink: 0;
+                padding: 8px;
+            }
+
+            .hamburger {
+                width: 23px;
+                height: 19px;
+            }
+
+            .nav-link-mobile {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 360px) {
+
+            header .logo-box a {
+                font-size: 9px;
+                gap: 3px;
+            }
+
+            header .logo-box {
+                padding: 5px 7px;
+            }
+
+            #hamburgerBtn {
+                padding: 6px;
+            }
+        }
+
+        /* TYPEWRITER */
+
+        .typewriter {
+            display: inline-block;
+            color: #0284c7;
+            font-weight: 800;
+            border-right: 3px solid #38bdf8;
+            padding-right: 6px;
+            white-space: nowrap;
+            animation: cursor-blink .75s step-end infinite;
+        }
+
+        @keyframes cursor-blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* BOUNCING NAME */
+
+        .birthday-name {
+            display: inline-block;
+            color: #0284c7;
+            text-shadow: 0 4px 12px rgba(14,165,233,.18);
+            animation: name-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes name-bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-12px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            70% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* 100 DAYS TITLE */
+
+        .day100-title {
+            animation: celebration-in 1.4s ease-out both;
+        }
+
+        @keyframes celebration-in {
+            0% {
+                opacity: 0;
+                transform: scale(.5) translateY(30px);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.12) translateY(-8px);
+            }
+            80% {
+                transform: scale(.95) translateY(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* FLOATING HEART */
+
+        .floating-heart {
+            display: inline-block;
+            color: #38bdf8;
+            animation: heart-float 2.5s ease-in-out infinite;
+        }
+
+        @keyframes heart-float {
+            0%, 100% {
+                transform: translateY(0) rotate(-8deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(8deg);
+            }
+        }
+
+        /* SECTION ANIMATION */
+
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-heading {
+            animation: heading-pop 1s ease-out both;
+        }
+
+        @keyframes heading-pop {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* BALLOONS */
+
+        .balloon {
+            position: absolute;
+            bottom: -80px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(14,165,233,.2);
+            animation: float-up 10s linear infinite;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 25%;
+            width: 25%;
+            height: 35%;
+            border-radius: 50%;
+            background: rgba(255,255,255,.65);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 35px;
+            background: rgba(100,116,139,.5);
+            left: 50%;
+            top: 100%;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 0;
+            }
+            15% {
+                opacity: .85;
+            }
+            85% {
+                opacity: .85;
+            }
+            100% {
+                transform: translateY(-450px) rotate(15deg);
+                opacity: 0;
+            }
+        }
+
+        /* WISHES */
+
+        .wish-bubble {
+            animation: slide-in-up .4s ease-out forwards;
+        }
+
+        @keyframes slide-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input, textarea {
+            line-height: 2.2 !important;
+        }
+
+        button:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+
+            .section-fade {
+                opacity: 1;
+                transform: none;
+            }
+
+            .typewriter {
+                border-right: none;
+            }
+        }
+        .balloon-section {
+    background-image:
+        linear-gradient(
+            rgba(224, 242, 254, 0.15),
+            rgba(240, 249, 255, 0.25)
+        ),
+        url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShZXZlo6fdACmcrzTouN_Ocsv5aC0cDNd3RxwqMYkirA&s=10");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+
+    /* Mute / Play button */
+    .mute-btn {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #0ea5e9;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.2s ease;
+        backdrop-filter: blur(4px);
+    }
+
+    .mute-btn:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .mute-btn.muted {
+        background: rgba(239, 68, 68, 0.9);
+        border-color: #ef4444;
+    }
+
+    .mute-btn.muted:hover {
+        background: rgba(239, 68, 68, 1);
+    }
+
+    .mute-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: #0ea5e9;
+    }
+
+    .mute-btn.muted svg {
+        fill: #fff;
+    }
+
+    /* Click-to-play overlay (shown if autoplay is blocked) */
+    .audio-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .audio-overlay p {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .audio-overlay button {
+        background: #0ea5e9;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .audio-overlay button:hover {
+        background: #0284c7;
+    }
+</style>
+</head>
+
+<body class="bg-softblue text-gray-800 antialiased">
+
+<!-- HEADER -->
+
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-sky-100 shadow-sm">
+
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+
+        <div class="logo-box px-4 py-2 rounded-xl bg-sky-50 border border-sky-200 shadow-sm">
+
+            <a href="#about" class="flex items-center justify-center gap-2 font-bold text-sky-800">
+
+                <i class="fa-solid fa-feather-pointed text-sky-500"></i>
+
+                <span>ချစ်ခြင်းမေတ္တာ ရက် (၁၀၀)</span>
+
+                <i class="fa-solid fa-heart text-sky-400 text-xs"></i>
+
+            </a>
+
+        </div>
+
+        <!-- Desktop navigation -->
+
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold">
+
+            <a href="#about" class="nav-link text-gray-600">About</a>
+            <a href="#timeline" class="nav-link text-gray-600">Timeline</a>
+            <a href="#gallery" class="nav-link text-gray-600">Gallery</a>
+            <a href="#wishes" class="nav-link text-gray-600">Wishes</a>
+
+        </nav>
+
+        <!-- Mobile hamburger -->
+
+        <button id="hamburgerBtn"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                class="md:hidden p-2 rounded-lg hover:bg-sky-50">
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </button>
+
+    </div>
+
+    <!-- Mobile menu -->
+
+    <div id="mobileMenu" class="md:hidden mobile-menu border-t border-sky-100 bg-white/95">
+
+        <nav class="flex flex-col pb-3 text-sm font-semibold">
+
+            <a href="#about" class="nav-link-mobile block px-6 py-3 text-sky-700 hover:bg-sky-50">♡ About</a>
+            <a href="#timeline" class="nav-link-mobile block px-6 py-3 text-sky-700 hover:bg-sky-50">♡ Timeline</a>
+            <a href="#gallery" class="nav-link-mobile block px-6 py-3 text-sky-700 hover:bg-sky-50">♡ Gallery</a>
+            <a href="#wishes" class="nav-link-mobile block px-6 py-3 text-sky-700 hover:bg-sky-50">♡ Wishes</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section id="about" class="py-4 md:py-24 px-4 text-center gradient-bg">
+
+    <div class="max-w-3xl mx-auto space-y-6">
+
+        <span class="inline-block px-3 py-2 rounded-full bg-sky-100 text-sky-700 text-sm font-semibold">
+ဖေဖေ ကိုသိင်္ခစိုး +‌ မေမေ မသဲသက်နှင်း    </span>
+
+        <p class="text-sky-600 font-bold">
+<span class="text-xs">တို့ရဲ့</span> <br><br>
+            သားဦးရတနာ
+        </p>
+
+        <!-- Animated baby name -->
+
+        <div class="py-3">
+
+            <p class="text-sky-500 text-sm md:text-lg font-semibold mb-3">
+        ဘိုးဘိုး၊ဘွားဘွား တို့ရဲ့ အချစ်ဆုံးမြေးလေး
+            </p>
+
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-relaxed">
+
+                <span id="birthdayName" class="birthday-name">
+                    သားသား သုခပြည့်စုံအောင်
+                </span>
+
+            </h1>
+
+
+        </div>
+
+        <!-- Animated 100 days title -->
+
+        <div class="mt-5 mb-6">
+
+            <div class="inline-block bg-sky-100 border border-sky-200 rounded-2xl px-6 py-5 shadow-sm day100-title">
+
+                <p class="text-sky-600 font-semibold text-sm mb-2">
+                    A Special Celebration
+                </p>
+
+                <h2 class="text-2xl md:text-4xl font-extrabold text-sky-800">
+                    ရက် (၁၀၀) ပြည့်
+                </h2>
+
+                <p class="text-sky-600 font-bold mt-2">
+                    100 Days of Love
+                </p>
+
+            </div>
+
+        </div>
+
+        <p class="text-sm md:text-base text-gray-600 max-w-lg mx-auto leading-loose">
+
+            သားသားလေးရဲ့ ဘဝခရီးအစ<br>
+            ပျော်ရွှင်ခြင်း၊ ရယ်မောခြင်း၊<br>
+            ချစ်ခြင်းမေတ္တာတွေနဲ့အတူ<br>
+            နေ့ရက်ပေါင်း ၁၀၀ မှသည်<br>
+            ကျန်းမာပျော်ရွှင်ပြီး<br>
+            ကောင်းခြင်းမင်္ဂလာတွေနဲ့<br>
+            ပြည့်စုံတဲ့ ဘဝလမ်းခရီးကို<br>
+            အမြဲလျှောက်လှမ်းနိုင်ပါစေ။
+
+         
+
+            <br><br>
+
+            အချစ်တွေအားလုံးဖြင့်<br>
+            ဖေဖေ နှင့် မေမေ
+
+        </p>
+
+        <!-- Baby photo -->
+
+        <div class="relative w-48 h-48 md:w-56 md:h-56 mx-auto my-8">
+
+            <div class="absolute inset-0 bg-sky-300 rounded-full blur-lg opacity-40 animate-pulse"></div>
+
+            <img
+                src="/images/banner.jpg"
+                alt="Baby photo"
+                class="relative w-full h-full object-cover rounded-full border-4 border-white shadow-xl"
+            >
+
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-3">
+
+            <a href="#wishes"
+               class="px-6 py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold shadow-md transition">
+
+                မွေးနေ့ဆုတောင်းမယ်
+
+            </a>
+
+            <a href="#gallery"
+               class="px-6 py-3 rounded-xl bg-white hover:bg-sky-50 border border-sky-200 font-semibold text-sky-700 transition">
+
+                သားသားပုံကြည့်မယ်
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BALLOON ANIMATION -->
+
+<!-- BALLOON ANIMATION WITH BACKGROUND IMAGE -->
+
+<section class="balloon-section relative h-64 md:h-80 overflow-hidden">
+
+    <!-- Background overlay -->
+    <div class="absolute inset-0 bg-sky-100/35"></div>
+
+    <!-- Animated balloons -->
+    <div
+        id="balloonContainer"
+        class="absolute inset-0 w-full h-full pointer-events-none z-10">
+    </div>
+
+    
+
+</section>
+
+
+<!-- SPECIAL MESSAGE -->
+
+<section class="py-14 px-4 bg-white section-fade">
+
+    <div class="max-w-2xl mx-auto text-center">
+
+        <span class="text-3xl floating-heart">♡</span>
+
+        <h2 class="text-xl md:text-2xl font-bold text-sky-800 section-heading mb-5">
+            ဖေဖေ၊ မေမေတို့ရဲ့ ရင်ထဲက စကား
+        </h2>
+
+        <div class="bg-sky-50 border border-sky-100 rounded-2xl p-6 md:p-8 shadow-sm">
+
+            <p class="text-sm md:text-base text-gray-600 leading-loose">
+
+                သားသားရေ ...
+
+                သားလေးတို့ရဲ့ ဘဝလေးထဲကို ရောက်လာပေးခဲ့လို့ ဖေဖေနဲ့မေမေ အရမ်းပျော်ပါတယ်။
+
+                သားလေးရဲ့ အပြုံးလေးတွေ၊ ရယ်သံလေးတွေ၊ လက်ကလေးခြေကလေး လှုပ်ရှားပုံလေးတွေဟာ ဖေဖေ၊ မေမေတို့အတွက် တန်ဖိုးမဖြတ်နိုင်တဲ့ အမှတ်တရလေးတွေပါ။
+
+                သားလေး ဘယ်လောက်ပဲ ကြီးပြင်းလာပါစေ ဖေဖေနဲ့မေမေတို့ရဲ့ အချစ်ဆုံးသားလေးအဖြစ် အမြဲရှိနေမှာပါ။
+
+                <br><br>
+
+                ကျန်းမာပျော်ရွှင်ပြီး အနာဂတ်လှပတဲ့ <br>လူတော်လူကောင်းလေး ဖြစ်ပါစေနော်။
+
+                <br><br>
+
+                Love you forever, our little prince.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TIMELINE -->
+
+<section id="timeline" class="py-16 max-w-4xl mx-auto px-4 section-fade">
+
+    <h2 class="text-xl md:text-2xl font-bold text-center mb-12 text-sky-800 section-heading">
+        သားသားကမ္ဘာ ရက် ၁၀၀
+        <span class="floating-heart">♡</span>
+    </h2>
+
+    <div class="relative border-l-2 border-sky-200 ml-4 md:ml-32 space-y-10">
+
+        <!-- DAY 1 -->
+
+        <div class="relative pl-8">
+
+            <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-sky-500 ring-4 ring-sky-100"></div>
+
+            <span class="md:absolute md:-left-32 md:top-0 text-sm font-semibold text-sky-700 block mb-2">
+                Day 1
+            </span>
+
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-sky-100">
+
+                <h3 class="font-bold text-gray-900">
+                    ပထမဦးဆုံးနေ့
+                </h3>
+
+                <p class="text-sm text-gray-600 mt-2 leading-loose">
+
+                    သားလေးရေ ...
+
+                    သားလေးကို ပထမဆုံးမြင်လိုက်ရတဲ့နေ့လေးကို ဖေဖေ၊ မေမေ ဘယ်တော့မှ မေ့နိုင်မှာမဟုတ်ဘူးနော်။
+
+                    သားလေးရဲ့ ငိုသံသေးသေးလေးကို ကြားလိုက်ရတဲ့အချိန်မှာ ပင်ပန်းခဲ့သမျှတွေအားလုံး ပျောက်သွားခဲ့ရတယ်။
+
+                    လက်ကလေးတွေ၊ ခြေထောက်ကလေးတွေကို ကြည့်ရင်း ကိုယ့်ရဲ့ရင်သွေးလေး တကယ်ရောက်လာပြီဆိုတဲ့ ပျော်ရွှင်မှုကို အပြည့်အဝခံစားခဲ့ရတယ်။
+
+                    အဲဒီနေ့ကစပြီး ဖေဖေ၊ မေမေတို့ရဲ့ ကမ္ဘာလေးထဲမှာ သားလေးဆိုတဲ့ အချစ်ဆုံးလူတစ်ယောက် ရှိလာခဲ့ပြီနော်။ 🤍
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- DAY 30 -->
+
+        <div class="relative pl-8">
+
+            <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-sky-500 ring-4 ring-sky-100"></div>
+
+            <span class="md:absolute md:-left-32 md:top-0 text-sm font-semibold text-sky-700 block mb-2">
+                Day 30
+            </span>
+
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-sky-100">
+
+                <h3 class="font-bold text-gray-900">
+                    မပြုံးမရယ် ရက် ၃၀
+                </h3>
+
+                <p class="text-sm text-gray-600 mt-2 leading-loose">
+
+                    သားလေးနဲ့အတူ နေထိုင်ခဲ့တာ တစ်လတောင် ပြည့်ခဲ့ပြီနော်။
+
+                    သားလေးကို ချီထားရင်း အိပ်ပျော်သွားတဲ့အချိန်တွေ၊ ညဘက် နိုးလာလို့ ချော့သိပ်ရတဲ့အချိန်တွေ၊ သားလေးရဲ့ မျက်နှာလေးကို အကြာကြီးထိုင်ကြည့်နေမိတဲ့ အချိန်တွေ ...
+
+                    အဲဒီလို နေ့စဉ်ဖြတ်သန်းရတဲ့ အရာလေးတွေကပဲ ဖေဖေ၊ မေမေတို့အတွက် အပျော်ရွှင်ရဆုံး အချိန်လေးတွေ ဖြစ်လာခဲ့တယ်။
+
+                    သားလေးရေ ... ဖြည်းဖြည်းချင်းပဲ ကြီးပြင်းပါနော်။ သားလေးရဲ့ နေ့ရက်တိုင်းကို ဖေဖေ၊ မေမေတို့ အနားမှာရှိပြီး ချစ်ပေးနေမယ်။ 🤍
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- DAY 100 -->
+
+        <div class="relative pl-8">
+
+            <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-sky-500 ring-4 ring-sky-100"></div>
+
+            <span class="md:absolute md:-left-32 md:top-0 text-sm font-semibold text-sky-700 block mb-2">
+                Day 100
+            </span>
+
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-sky-100">
+
+                <h3 class="font-bold text-gray-900">
+                    ချစ်ခြင်းမေတ္တာ ရက် ၁၀၀
+                </h3>
+
+                <p class="text-sm text-gray-600 mt-2 leading-loose">
+
+                    မယုံနိုင်လောက်အောင်ပါပဲ သားလေးရေ ...
+
+                    သားလေးကို ပထမဆုံးချီခဲ့ရတဲ့နေ့က မနေ့တစ်နေ့ကလိုပဲ ရှိသေးတယ်။ အခုတော့ သားလေးနဲ့အတူ နေ့ရက်ပေါင်း ၁၀၀ တောင် ဖြတ်သန်းခဲ့ပြီနော်။
+
+                    ဒီရက် ၁၀၀ အတွင်းမှာ သားလေးရဲ့ ငိုသံလေးတွေ၊ အိပ်ပျော်နေတဲ့ မျက်နှာလေးတွေ၊ အပြုံးလေးတွေ အားလုံးဟာ ဖေဖေ၊ မေမေတို့ရဲ့ အချစ်ဆုံးအမှတ်တရတွေ ဖြစ်နေခဲ့တယ်။
+
+                    သားလေးရောက်လာပြီးနောက်ပိုင်း ဘဝမှာ ပျော်စရာတွေ ပိုများလာသလို ချစ်တတ်လာရတာတွေလည်း အများကြီးပါပဲ။
+
+                    သားလေးရေ ...
+
+                    ကြီးပြင်းလာတဲ့အခါ ဘယ်လိုလူတစ်ယောက်ပဲ ဖြစ်လာပါစေ၊ သားလေးဟာ ဖေဖေ၊ မေမေတို့ရဲ့ အချစ်ဆုံးသားလေးဆိုတာ ဘယ်တော့မှ မပြောင်းလဲဘူးနော်။
+
+                    ကျန်းမာပါစေ၊ ပျော်ရွှင်ပါစေ၊ စိတ်ချမ်းသာပါစေ။
+
+                    သားလေးကို ဒီထက်မက အများကြီး ချစ်ပေးသွားမယ်နော်။
+
+                    Happy 100 Days, Our Little Love. 🤍
+
+                    ဖေဖေနဲ့မေမေတို့ရဲ့ အချစ်တွေအားလုံးနဲ့ ...
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section id="gallery" class="py-16 bg-white border-t border-sky-100 section-fade">
+
+    <div class="max-w-5xl mx-auto px-4">
+
+        <h2 class="text-xl md:text-2xl font-bold text-center mb-2 text-sky-800 section-heading">
+            သားသား Snap လေးများ
+            <span class="floating-heart">♡</span>
+        </h2>
+
+        <p class="text-center text-gray-500 text-sm mb-10">
+            လူထွားလေး သားသားပါခင်ဗျာ
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+            <div class="aspect-square rounded-2xl overflow-hidden bg-sky-50 shadow-sm hover:scale-[1.02] transition-transform">
+
+                <img
+                    src="/images/oxygen.jpg"
+                    alt="Baby memory 1"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                >
+
+            </div>
+
+            <div class="aspect-square rounded-2xl overflow-hidden bg-sky-50 shadow-sm hover:scale-[1.02] transition-transform">
+
+                <img
+                    src="/images/eye-cover.jpg"
+                    alt="Baby memory 2"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                >
+
+            </div>
+
+            <div class="aspect-square rounded-2xl overflow-hidden bg-sky-50 shadow-sm hover:scale-[1.02] transition-transform">
+
+                <img
+                    src="/images/nyein.jpg"
+                    alt="Baby memory 3"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                >
+
+            </div>
+            <div class="aspect-square rounded-2xl overflow-hidden bg-sky-50 shadow-sm hover:scale-[1.02] transition-transform">
+
+                <img
+                    src="/images/geto.jpg"
+                    alt="Baby memory 3"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WISHES -->
+
+<section id="wishes" class="py-16 max-w-3xl mx-auto px-4 section-fade">
+
+    <h2 class="text-xl md:text-2xl font-bold text-center mb-2 text-sky-800 section-heading">
+        မွေးနေ့ဆုတောင်းစကား
+        <span class="floating-heart">♡</span>
+    </h2>
+
+    <p class="text-center text-gray-500 text-sm mb-8">
+        သားသားအတွက် မွေးနေ့ဆုတောင်းပေးကြမယ်
+    </p>
+
+    <form id="wishForm" class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm space-y-5 mb-10">
+
+        <div>
+
+            <label for="authorInput" class="block text-xs font-semibold text-gray-600 mb-2">
+                ဆုတောင်းပေးသူ၏ အမည်
+            </label>
+
+            <input
+                type="text"
+                id="authorInput"
+                required
+                maxlength="80"
+                placeholder="ဥပမာ - ဖွားဖွား၊ ဘဘ၊ ဦးလေး၊ အဒေါ်"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm placeholder:text-xs"
+            >
+
+        </div>
+
+        <div>
+
+            <label for="messageInput" class="block text-xs font-semibold text-gray-600 mb-2">
+                သားသားလေးအတွက် ဆုတောင်းစကား 💌
+            </label>
+
+            <textarea
+                id="messageInput"
+                rows="4"
+                required
+                maxlength="1000"
+                placeholder="သားသားလေး ကျန်းမာပျော်ရွှင်ပြီး ဘဝတစ်လျှောက်လုံး ကောင်းခြင်းမင်္ဂလာများနဲ့ ပြည့်စုံပါစေ..."
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm resize-y placeholder:text-xs"
+            ></textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            id="submitBtn"
+            class="w-full py-4 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl shadow-md transition-colors flex items-center justify-center gap-3"
+        >
+
+            <span>ဆုတောင်းစာလေးပေးပို့မယ် 🕊️</span>
+
+            <i id="loadingIcon" class="fa-solid fa-spinner animate-spin hidden"></i>
+
+        </button>
+
+        <p id="formMessage" class="text-sm text-center hidden" aria-live="polite"></p>
+
+    </form>
+
+    <div id="wishesList" class="space-y-4"></div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="py-8 bg-sky-900 text-sky-100 text-center text-xs">
+
+    <p>
+        သားကြီးအတွက် ဖေဖေမှ အမှတ်တရ ဖန်တီးသည်။
+    </p>
+
+    <p class="mt-2 text-xs text-sky-300">
+        ♡ Happy 100 Days, Our Little Prince ♡
+    </p>
+
+</footer>
+
+
+<button id="mute-btn" class="mute-btn" aria-label="Toggle background music">
+    <svg viewBox="0 0 24 24">
+        <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+        <path id="volume-icon" d="M12 5v2.5c1.4.9 2.3 2.5 2.3 4.3s-.9 3.4-2.3 4.3V19c2.4-1 4-3.3 4-6s-1.6-5-4-6z"/>
+        <path id="mute-icon" d="M16.5 12c0-.9-.2-1.8-.6-2.6l1.4-1.4C18.5 8.8 20 10.3 20 12s-1.5 3.2-3.7 2.6c-.7-.3-1.3-.9-1.8-1.6z" style="display:none"/>
+    </svg>
+</button>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    // CONFIGURATION
+
+    const TELEGRAM_ENDPOINT = '/api/wishes';
+    const STORAGE_KEY = 'babyWishes_v2';
+
+
+    // DEFAULT WISHES
+
+    const defaultWishes = [
+        {
+            author: "Daddy and Mommy",
+            text: "Happy 100th Day သားသားရေ။ ဖေဖေနဲ့မေမေ့ ဘဝထဲကိုရောက်လာပေးလို့ အရမ်းကျေးဇူးတင်ပါတယ်။ Lucky Baby လေး ကျန်းမာပျော်ရွှင်စွာ ကြီးပြင်းလာပေးနော်။"
+        }
+    ];
+
+
+    // LOAD WISHES
+
+    let wishes = [];
+
+     try {
+
+        const saved = localStorage.getItem(STORAGE_KEY);
+
+        wishes = saved ? JSON.parse(saved) : [];
+        if (!Array.isArray(wishes)) {
+            wishes = [];
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        wishes = [];
+
+    }
+
+
+    // DOM ELEMENTS
+
+    const wishForm = document.getElementById('wishForm');
+    const wishesList = document.getElementById('wishesList');
+
+    const submitBtn = document.getElementById('submitBtn');
+    const loadingIcon = document.getElementById('loadingIcon');
+    const formMessage = document.getElementById('formMessage');
+
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+
+    // MOBILE MENU
+
+    if (hamburgerBtn && mobileMenu) {
+
+        hamburgerBtn.addEventListener('click', () => {
+
+            const isOpen = mobileMenu.classList.toggle('open');
+
+            hamburgerBtn.classList.toggle('active', isOpen);
+
+            hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+
+        });
+
+        document.querySelectorAll('.nav-link-mobile').forEach(link => {
+
+            link.addEventListener('click', () => {
+
+                mobileMenu.classList.remove('open');
+                hamburgerBtn.classList.remove('active');
+
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+
+            });
+
+        });
+
+    }
+
+
+    // NAVIGATION ACTIVE STATE
+
+    const sections = ['about', 'timeline', 'gallery', 'wishes'];
+
+    if ('IntersectionObserver' in window) {
+
+        const navObserver = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting) return;
+
+                const id = entry.target.id;
+
+                document.querySelectorAll('.nav-link, .nav-link-mobile')
+                    .forEach(link => {
+
+                        link.classList.toggle(
+                            'active',
+                            link.getAttribute('href') === '#' + id
+                        );
+
+                    });
+
+            });
+
+        }, {
+            threshold: 0.25
+        });
+
+        sections.forEach(id => {
+
+            const section = document.getElementById(id);
+
+            if (section) navObserver.observe(section);
+
+        });
+
+    }
+
+
+    // HTML ESCAPING
+
+    function escapeHtml(str) {
+
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+
+    }
+
+
+    // RENDER WISHES
+
+    function renderWishes() {
+
+        if (!wishesList) return;
+
+        const displayWishes = [...defaultWishes, ...wishes];
+
+        if (displayWishes.length === 0) {
+
+            wishesList.innerHTML = `
+                <p class="text-gray-500 text-sm text-center py-8">
+                    သားသားလေးအတွက် ပထမဆုံးဆုတောင်းစကားလေး ရေးပေးလိုက်ပါနော် 💙
+                </p>
+            `;
+
+            return;
+
+        }
+
+        wishesList.innerHTML = displayWishes.map(w => `
+
+            <div class="wish-bubble bg-white p-5 rounded-2xl rounded-tl-none border border-sky-100 shadow-sm">
+
+                <p class="text-gray-700 text-sm leading-loose">
+                    "${escapeHtml(w.text)}"
+                </p>
+
+                <span class="block mt-3 text-xs font-semibold text-sky-700">
+                    — ${escapeHtml(w.author)}
+                </span>
+
+            </div>
+
+        `).join('');
+
+    }
+
+
+    // SAVE WISHES
+
+    function saveWishes() {
+
+        try {
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
+
+            return true;
+
+        } catch (error) {
+
+            console.error(error);
+
+            return false;
+
+        }
+
+    }
+
+
+    // SHOW FORM MESSAGE
+
+    function showMessage(text, isError = false) {
+
+        formMessage.textContent = text;
+
+        formMessage.className =
+            `text-sm text-center ${isError ? 'text-red-500' : 'text-green-600'}`;
+
+        formMessage.classList.remove('hidden');
+
+    }
+
+
+    // WISH FORM SUBMISSION
+
+    wishForm.addEventListener('submit', async function(e) {
+
+        e.preventDefault();
+
+        const author = document.getElementById('authorInput').value.trim();
+        const text = document.getElementById('messageInput').value.trim();
+
+        if (!author || !text) return;
+
+        submitBtn.disabled = true;
+        loadingIcon.classList.remove('hidden');
+
+        const originalBtnText = submitBtn.querySelector('span').textContent;
+
+        submitBtn.querySelector('span').textContent = 'ပေးပို့နေပါတယ်...';
+
+        let serverSuccess = false;
+
+        try {
+
+            const response = await fetch(TELEGRAM_ENDPOINT, {
+
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    author,
+                    text
+                })
+
+            });
+
+            if (!response.ok) {
+                throw new Error('Server response failed');
+            }
+
+            serverSuccess = true;
+
+        } catch (error) {
+
+            console.error('Wish delivery error:', error);
+
+        }
+
+        wishes.unshift({
+            author,
+            text
+        });
+
+        const saved = saveWishes();
+
+        renderWishes();
+
+        wishForm.reset();
+
+        if (serverSuccess && saved) {
+
+            showMessage('သားသားလေးအတွက် ဆုတောင်းစကားလေး ပေးပို့ပြီးပါပြီ။ ကျေးဇူးတင်ပါတယ်နော် 💙');
+
+        } else if (saved) {
+
+            showMessage('ဆုတောင်းစာလေးကို ဒီစက်ထဲမှာ သိမ်းဆည်းထားပါတယ်။ Server ပေးပို့မှု မအောင်မြင်သေးပါ။', true);
+
+        } else {
+
+            showMessage('ဆုတောင်းစာ သိမ်းဆည်းမှု မအောင်မြင်ပါ။ ထပ်မံကြိုးစားပေးပါ။', true);
+
+        }
+
+        submitBtn.disabled = false;
+
+        submitBtn.querySelector('span').textContent = originalBtnText;
+
+        loadingIcon.classList.add('hidden');
+
+    });
+
+
+    // SECTION FADE-IN
+
+    const sectionFadeEls = document.querySelectorAll('.section-fade');
+
+    if ('IntersectionObserver' in window) {
+
+        const sectionObserver = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('visible');
+
+                    sectionObserver.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.05
+        });
+
+        sectionFadeEls.forEach(el => sectionObserver.observe(el));
+
+    } else {
+
+        sectionFadeEls.forEach(el => el.classList.add('visible'));
+
+    }
+
+
+    // TYPEWRITER EFFECT
+
+    const birthdayName = document.getElementById('birthdayName');
+
+    const babyName = 'သားသား သုခပြည့်စုံအောင်';
+
+    let typeIndex = 0;
+    let deleting = false;
+
+    const typingSpeed = 180;
+    const deletingSpeed = 100;
+
+    function typeBabyName() {
+
+        if (!birthdayName) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+            birthdayName.textContent = babyName;
+            birthdayName.classList.remove('typewriter');
+
+            return;
+
+        }
+
+        const characters = Array.from(babyName);
+
+        if (!deleting) {
+
+            typeIndex++;
+
+            birthdayName.textContent =
+                characters.slice(0, typeIndex).join('');
+
+            if (typeIndex >= characters.length) {
+
+                deleting = true;
+
+                setTimeout(typeBabyName, 1800);
+
+                return;
+
+            }
+
+            setTimeout(typeBabyName, typingSpeed);
+
+        } else {
+
+            typeIndex--;
+
+            birthdayName.textContent =
+                characters.slice(0, typeIndex).join('');
+
+            if (typeIndex <= 0) {
+
+                deleting = false;
+
+                setTimeout(typeBabyName, 500);
+
+                return;
+
+            }
+
+            setTimeout(typeBabyName, deletingSpeed);
+
+        }
+
+    }
+
+    if (birthdayName) {
+
+        birthdayName.classList.add('typewriter');
+
+        typeBabyName();
+
+    }
+
+
+    // BALLOON ANIMATION
+
+    const balloonContainer = document.getElementById('balloonContainer');
+
+    const balloonColors = [
+        '#0ea5e9',
+        '#38bdf8',
+        '#7dd3fc',
+        '#bae6fd',
+        '#0284c7',
+        '#0369a1',
+        '#e0f2fe'
+    ];
+
+    function darkenColor(hex, percent) {
+
+        const num = parseInt(hex.replace('#', ''), 16);
+
+        const amt = Math.round(2.55 * percent * 100);
+
+        const R = Math.max(0, (num >> 16) - amt);
+        const G = Math.max(0, ((num >> 8) & 0x00FF) - amt);
+        const B = Math.max(0, (num & 0x0000FF) - amt);
+
+        return '#' + (
+            0x1000000 +
+            R * 0x10000 +
+            G * 0x100 +
+            B
+        ).toString(16).slice(1);
+
+    }
+
+    if (balloonContainer) {
+
+        for (let i = 0; i < 18; i++) {
+
+            const balloon = document.createElement('div');
+
+            const size = 30 + Math.random() * 40;
+
+            const color = balloonColors[
+                Math.floor(Math.random() * balloonColors.length)
+            ];
+
+            const left = Math.random() * 100;
+            const duration = 7 + Math.random() * 7;
+            const delay = Math.random() * 10;
+
+            balloon.classList.add('balloon');
+
+            balloon.style.width = `${size}px`;
+            balloon.style.height = `${size}px`;
+
+            balloon.style.left = `${left}%`;
+
+            balloon.style.background =
+                `radial-gradient(circle at 30% 30%, ${color}, ${darkenColor(color, 0.2)})`;
+
+            balloon.style.animationDuration = `${duration}s`;
+            balloon.style.animationDelay = `${delay}s`;
+
+            balloonContainer.appendChild(balloon);
+
+        }
+
+    }
+
+
+    // HAPPY BIRTHDAY SOUND
+
+    const birthdayAudio = new Audio('images/Good_Morning_to_All(chosic.com).mp3');
+
+    birthdayAudio.loop = true;
+
+    birthdayAudio.volume = 0.3;
+
+    let isMuted = false;
+
+    const muteBtn = document.getElementById('mute-btn');
+
+    const volumeIcon = document.getElementById('volume-icon');
+
+    const muteIcon = document.getElementById('mute-icon');
+
+    let audioUnlocked = false;
+
+
+    function updateMuteButton() {
+
+        if (isMuted) {
+
+            muteBtn.classList.add('muted');
+
+            volumeIcon.style.display = 'none';
+
+            muteIcon.style.display = 'block';
+
+        } else {
+
+            muteBtn.classList.remove('muted');
+
+            volumeIcon.style.display = 'block';
+
+            muteIcon.style.display = 'none';
+
+        }
+
+    }
+
+
+    function unlockAudio() {
+
+        if (audioUnlocked) return;
+
+        audioUnlocked = true;
+
+        birthdayAudio.play().catch(e => {
+
+            console.log('Autoplay blocked:', e);
+
+        });
+
+        removeAudioOverlay();
+
+    }
+
+
+    function removeAudioOverlay() {
+
+        const overlay = document.querySelector('.audio-overlay');
+
+        if (overlay) {
+
+            overlay.remove();
+
+        }
+
+    }
+
+
+    muteBtn.addEventListener('click', () => {
+
+        isMuted = !isMuted;
+
+        birthdayAudio.muted = isMuted;
+
+        updateMuteButton();
+
+        if (!isMuted && audioUnlocked) {
+
+            birthdayAudio.play().catch(e => {
+
+                console.log('Play failed:', e);
+
+            });
+
+        }
+
+    });
+
+
+    const audioOverlay = document.createElement('div');
+
+    audioOverlay.className = 'audio-overlay';
+
+    audioOverlay.innerHTML = '<p>🎵 Birthday background music available!</p><button id="play-audio-btn">Tap to Play</button>';
+
+    document.body.appendChild(audioOverlay);
+
+    document.getElementById('play-audio-btn').addEventListener('click', unlockAudio);
+
+    document.addEventListener('click', function once(e) {
+
+        unlockAudio();
+
+        document.removeEventListener('click', once);
+
+    });
+
+    document.addEventListener('keydown', function onceKey() {
+
+        unlockAudio();
+
+        document.removeEventListener('keydown', onceKey);
+
+    });
+
+
+    // INITIALIZE
+
+    renderWishes();
+
+</script>
+
+</body>
+</html>
