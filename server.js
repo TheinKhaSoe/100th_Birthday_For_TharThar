@@ -58,6 +58,12 @@ app.post('/api/wishes', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+// Export for Vercel / module use
+module.exports = app;
+
+// Only start listening when run directly (local dev)
+if (require.main === module) {
+  app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
-});
+  });
+}
